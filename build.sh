@@ -314,6 +314,10 @@ case "$DEVICE" in
     check_os_release "armv7" "$VERSION" "$DEVICE"
     sh scripts/aml9xxxarmv7image.sh -v "$VERSION" -p "$PATCH" -a armv7
     ;;
+  amlg18refarmv7) echo 'Writing Amlogic G18ref Image File'
+    check_os_release "armv7" "$VERSION" "$DEVICE"
+    sh scripts/amlg18refarmv7image.sh -v "$VERSION" -p "$PATCH" -a armv7
+    ;;
   orangepione|orangepilite|orangepipc) echo 'Writing OrangePi Image File'
     check_os_release "armv7" "$VERSION" "$DEVICE"
     sh scripts/orangepiimage.sh -v "$VERSION" -p "$PATCH" -d "$DEVICE"
