@@ -18,7 +18,7 @@ while getopts ":v:p:a:" opt; do
 done
 
 BUILDDATE=$(date -I)
-IMG_FILE="Volumio${VERSION}-${BUILDDATE}-amlg18refarmv7.img"
+IMG_FILE="Volumio${VERSION}-${BUILDDATE}-amlg18ref.img"
 
 if [ "$ARCH" = arm ]; then
   DISTRO="Raspbian"
@@ -100,21 +100,19 @@ mount -t vfat "${BOOT_PART}" /mnt/volumio/rootfs/boot
 echo "Copying Volumio RootFs"
 cp -pdR build/$ARCH/root/* /mnt/volumio/rootfs
 echo "Copying boot files"
-cp -pdR platform-aml/g18ref/boot/* /mnt/volumio/rootfs/boot
+cp platform-aml/g18ref/boot/uImage /mnt/volumio/rootfs/boot
 echo "Copying modules"
 cp -pdR platform-aml/g18ref/lib/modules /mnt/volumio/rootfs/lib/
 echo "Copying firmware"
 cp -pdR platform-aml/g18ref/lib/firmware /mnt/volumio/rootfs/lib/
-#echo "Copying etc files"
-#cp -pdR platform-aml/s805/etc/* /mnt/volumio/rootfs/etc
-#echo "Copying usr/bin files"
-#cp -pdR platform-aml/s805/usr/* /mnt/volumio/rootfs/usr
-#echo "Copying volumio fix"
-#cp -pdR platform-aml/s805/volumio/* /mnt/volumio/rootfs/volumio
+echo "Copying etc files"
+cp -pdR platform-aml/g18ref/etc/* /mnt/volumio/rootfs/etc
+echo "Copying usr/bin files"
+cp -pdR platform-aml/g18ref/usr/* /mnt/volumio/rootfs/usr
 sync
 
 echo "Preparing to run chroot for more AML configuration"
-cp scripts/amlg18refarmv7config.sh /mnt/volumio/rootfs
+cp scripts/amlg18refconfig.sh /mnt/volumio/rootfs
 cp scripts/initramfs/init.nextarm_tvbox /mnt/volumio/rootfs/root/init
 cp scripts/initramfs/mkinitramfs-custom.sh /mnt/volumio/rootfs/usr/local/sbin
 #copy the scripts for updating from usb
@@ -127,11 +125,11 @@ echo $PATCH > /mnt/volumio/rootfs/patch
 
 chroot /mnt/volumio/rootfs /bin/bash -x <<'EOF'
 su -
-/amlg18refarmv7config.sh
+/amlg18refconfig.sh
 EOF
 
 #cleanup
-rm /mnt/volumio/rootfs/amlg18refarmv7config.sh
+rm /mnt/volumio/rootfs/amlg18refconfig.sh
 rm /mnt/volumio/rootfs/root/init /mnt/volumio/rootfs/root/init.sh
 rm /mnt/volumio/rootfs/usr/local/sbin/mkinitramfs-custom.sh
 

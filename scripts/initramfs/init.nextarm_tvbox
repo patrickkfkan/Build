@@ -130,8 +130,8 @@ if [ $HWDEVICE == ODROID-C2 ]; then
   exec >/dev/kmsg 2>&1 </dev/console
 fi
 
-# Odroid C1, SparkySBC, Banana PI, Pine64 and Cubox have overlayfs version < V22
-if [ $HWDEVICE == ODROIDC ] || [ $HWDEVICE == gs705a ] || [ $HWDEVICE == sun50iw1p1 ] || [ $HWDEVICE == sun8iw11p1 ] || [ $HWDEVICE == Freescale ]; then
+# Odroid C1, SparkySBC, Banana PI, Pine64, Cubox and Amlogic g18ref have overlayfs version < V22
+if [ $HWDEVICE == ODROIDC ] || [ $HWDEVICE == gs705a ] || [ $HWDEVICE == sun50iw1p1 ] || [ $HWDEVICE == sun8iw11p1 ] || [ $HWDEVICE == Freescale ] || [ $HWDEVICE == amlg18ref ]; then
    OVERLAY=NOWRKDIR
    exec >/dev/kmsg 2>&1 </dev/console
 else
