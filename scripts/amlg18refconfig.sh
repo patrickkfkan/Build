@@ -3,9 +3,10 @@
 PATCH=$(cat /patch)
 
 # This script will be run in chroot under qemu.
-echo "Initializing.."
-. init.sh
 
+# ***************
+# Create fstab
+# ******
 echo "Creating \"fstab\""
 echo "# Amlogic fstab" > /etc/fstab
 echo "" >> /etc/fstab
