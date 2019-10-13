@@ -416,6 +416,7 @@ DESTDIR=${DESTDIR_REAL}
 echo "Adding findfs/ parted/ mkfs.ext4/ e2fsck to initramfs"
 cp /sbin/parted "${DESTDIR}/sbin"
 cp /sbin/partprobe "${DESTDIR}/sbin"
+cp /sbin/mkfs.ext3 "${DESTDIR}/sbin"
 cp /sbin/mkfs.ext4 "${DESTDIR}/sbin"
 cp /sbin/e2fsck "${DESTDIR}/sbin"
 cp /sbin/resize2fs "${DESTDIR}/sbin"

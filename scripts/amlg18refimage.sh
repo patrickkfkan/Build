@@ -56,8 +56,8 @@ fi
 
 echo "Creating boot and rootfs filesystems"
 mkfs -t vfat -n BOOT "${BOOT_PART}"
-mkfs -F -t ext4 -L volumio "${SYS_PART}"
-mkfs -F -t ext4 -L volumio_data "${DATA_PART}"
+mkfs -F -t ext3 -L volumio "${SYS_PART}"
+mkfs -F -t ext3 -L volumio_data "${DATA_PART}"
 sync
 
 echo "Preparing for the AML kernel and platform files"
@@ -113,7 +113,7 @@ sync
 
 echo "Preparing to run chroot for more AML configuration"
 cp scripts/amlg18refconfig.sh /mnt/volumio/rootfs
-cp scripts/initramfs/init.nextarm_tvbox /mnt/volumio/rootfs/root/init
+cp scripts/initramfs/init.amlg18ref /mnt/volumio/rootfs/root/init
 cp scripts/initramfs/mkinitramfs-custom.sh /mnt/volumio/rootfs/usr/local/sbin
 #copy the scripts for updating from usb
 wget -P /mnt/volumio/rootfs/root http://repo.volumio.org/Volumio2/Binaries/volumio-init-updater
