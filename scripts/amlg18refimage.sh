@@ -56,8 +56,8 @@ fi
 
 echo "Creating boot and rootfs filesystems"
 mkfs -t vfat -n BOOT "${BOOT_PART}"
-mkfs -F -t ext3 -L volumio "${SYS_PART}"
-mkfs -F -t ext3 -L volumio_data "${DATA_PART}"
+mkfs -F -t ext4 -L volumio "${SYS_PART}"
+mkfs -F -t ext4 -L volumio_data "${DATA_PART}"
 sync
 
 echo "Preparing for the AML kernel and platform files"
