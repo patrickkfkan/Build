@@ -101,6 +101,7 @@ echo "Copying Volumio RootFs"
 cp -pdR build/$ARCH/root/* /mnt/volumio/rootfs
 echo "Copying boot files"
 cp platform-aml/g18ref/boot/uImage /mnt/volumio/rootfs/boot
+cp platform-aml/g18ref/boot/aml_autoscript.cmd /mnt/volumio/rootfs/boot
 echo "Copying modules"
 cp -pdR platform-aml/g18ref/lib/modules /mnt/volumio/rootfs/lib/
 echo "Copying firmware"

@@ -86,3 +86,4 @@ mkimage -A arm -O linux -T script -C none -d /boot/aml_autoscript.cmd /boot/aml_
 
 echo "Removing unnecessary /boot files"
 rm /boot/volumio.initrd
+rm /boot/aml_autoscript.cmd
