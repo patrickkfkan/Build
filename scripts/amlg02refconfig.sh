@@ -43,8 +43,9 @@ echo "- VFD"
 git clone https://github.com/patrickkfkan/tm1628mpd.git
 cd tm1628mpd
 pip install .
-./systemd/install.sh
-cd ..
+cd systemd
+./install.sh
+cd ../..
 rm -rf tm1628mpd
 
 echo "Adding custom modules overlayfs, squashfs and nls_cp437"
