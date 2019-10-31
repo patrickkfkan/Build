@@ -19,24 +19,41 @@ tmpfs   /tmp                    tmpfs   defaults,noatime,mode=0755 0 0
 tmpfs   /dev/shm                tmpfs   defaults,nosuid,noexec,nodev        0 0
 " > /etc/fstab
 
-echo "#!/bin/sh -e
-/etc/hdmi.sh &
-exit 0" > /etc/rc.local
-
-systemd enable mpd-pause-btw-tracks
-
 echo "Installing additional packages"
 apt-get update
-apt-get -y install u-boot-tools liblircclient0 lirc mc abootimg fbset
+apt-get -y install u-boot-tools liblircclient0 lirc mc abootimg fbset python-pip
 
 echo "Cleaning APT Cache and remove policy file"
 rm -f /var/lib/apt/lists/*archive*
 apt-get clean
 
+echo "Setting up platform-specific stuff:"
+echo "- HDMI"
+echo "#!/bin/sh -e
+/etc/hdmi.sh &
+exit 0" > /etc/rc.local
+
+echo "- Enabling mpd-pause-btw-tracks service"
+systemctl enable mpd-pause-btw-tracks
+
+echo "- Disabling alsa-store service"
+systemctl disable alsa-store
+
+echo "- VFD"
+git clone https://github.com/patrickkfkan/tm1628mpd.git
+cd tm1628mpd
+pip install .
+./systemd/install.sh
+cd ..
+rm -rf tm1628mpd
+
 echo "Adding custom modules overlayfs, squashfs and nls_cp437"
 echo "overlayfs" >> /etc/initramfs-tools/modules
 echo "squashfs" >> /etc/initramfs-tools/modules
 echo "nls_cp437" >> /etc/initramfs-tools/modules
+
+echo "Adding VFD module"
+echo "venus_vfd" >> /etc/initramfs-tools/modules
 
 echo "Copying volumio initramfs updater"
 cd /root/
