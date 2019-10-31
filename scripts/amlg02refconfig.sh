@@ -36,8 +36,8 @@ exit 0" > /etc/rc.local
 echo "- Enabling mpd-pause-btw-tracks service"
 systemctl enable mpd-pause-btw-tracks
 
-echo "- Disabling alsa-store service"
-systemctl disable alsa-store
+echo "- Masking alsa-store service"
+systemctl mask alsa-store
 
 echo "- VFD"
 git clone https://github.com/patrickkfkan/tm1628mpd.git
