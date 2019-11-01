@@ -53,8 +53,8 @@ echo "overlayfs" >> /etc/initramfs-tools/modules
 echo "squashfs" >> /etc/initramfs-tools/modules
 echo "nls_cp437" >> /etc/initramfs-tools/modules
 
-echo "Adding VFD module"
-echo "venus_vfd" >> /etc/initramfs-tools/modules
+#echo "Adding VFD module"
+#echo "venus_vfd" >> /etc/initramfs-tools/modules
 
 echo "Copying volumio initramfs updater"
 cd /root/

@@ -150,9 +150,9 @@ fi
 modprobe squashfs
 modprobe nls_cp437
 
-if [ $HWDEVICE == amlg02ref ]; then
-    modprobe venus_vfd
-fi
+#if [ $HWDEVICE == amlg02ref ]; then
+#    modprobe venus_vfd
+#fi
 
 print_msg IMGPART=${IMGPART}
 print_msg IMGFILE=${IMGFILE}
