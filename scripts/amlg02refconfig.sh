@@ -28,9 +28,9 @@ rm -f /var/lib/apt/lists/*archive*
 apt-get clean
 
 echo "Setting up platform-specific stuff:"
-echo "- HDMI"
+echo "- Platform init"
 echo "#!/bin/sh -e
-/etc/hdmi.sh &
+/etc/platform_init.sh &
 exit 0" > /etc/rc.local
 
 echo "- Enabling mpd-pause-btw-tracks service"
